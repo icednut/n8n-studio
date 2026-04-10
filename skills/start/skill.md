@@ -107,7 +107,7 @@ else
   PANE_ID=$(tmux split-window -h -d -t "$TEAM_LEAD_WINDOW" -P -F "#{pane_id}")
   tmux select-pane -t "$PANE_ID" -T "$PANE_NAME"
   tmux select-layout -t "$TEAM_LEAD_WINDOW" tiled
-  tmux send-keys -t "$PANE_ID" "cd '$WORK_DIR' && claude --model $PANE_MODEL" Enter
+  tmux send-keys -t "$PANE_ID" "cd '$WORK_DIR' && claude --model $PANE_MODEL --name '$PANE_NAME'" Enter
   sleep 5
 fi
 
