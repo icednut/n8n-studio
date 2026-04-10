@@ -45,11 +45,13 @@ if [ -z "$TMUX" ]; then
   exit 1
 fi
 
-# Team Lead 자신의 pane ID 캡처 및 저장
+# Team Lead 자신의 pane ID 및 window ID 캡처 및 저장
 mkdir -p /tmp/n8n-studio
 TEAM_LEAD_PANE=$(tmux display-message -p "#{pane_id}")
+TEAM_LEAD_WINDOW=$(tmux display-message -p "#{window_id}")
 echo "$TEAM_LEAD_PANE" > /tmp/n8n-studio/team_lead_pane.txt
-echo "Team Lead pane: $TEAM_LEAD_PANE"
+echo "$TEAM_LEAD_WINDOW" > /tmp/n8n-studio/team_lead_window.txt
+echo "Team Lead pane: $TEAM_LEAD_PANE (window: $TEAM_LEAD_WINDOW)"
 ```
 
 ---
@@ -74,6 +76,7 @@ PANE_NAME="[pane 이름 예: n8n-planner]"
 PANE_MODEL="[에이전트 모델 예: haiku 또는 sonnet]"
 TASK_FILE="${TASK_DIR}/[stage]_task.md"
 TEAM_LEAD_PANE=$(cat /tmp/n8n-studio/team_lead_pane.txt)
+TEAM_LEAD_WINDOW=$(cat /tmp/n8n-studio/team_lead_window.txt)
 
 # 1. 태스크 파일 작성 (완료 보고 명령 포함)
 cat > "$TASK_FILE" << 'TASKEOF'
@@ -92,18 +95,18 @@ cat > "$TASK_FILE" << 'TASKEOF'
    tmux send-keys -t [TEAM_LEAD_PANE_ID] "[stage] 완료. [결과 요약]. 다음 단계를 진행해주세요." Enter
 TASKEOF
 
-# 2. 기존 pane 조회 (세션 내에서만)
-EXISTING_PANE=$(tmux list-panes -s -F "#{pane_id} #{pane_title}" 2>/dev/null \
+# 2. 기존 pane 조회 (team-lead 윈도우 내에서만)
+EXISTING_PANE=$(tmux list-panes -t "$TEAM_LEAD_WINDOW" -F "#{pane_id} #{pane_title}" 2>/dev/null \
   | grep " ${PANE_NAME}$" | awk '{print $1}' | head -1)
 
 if [ -n "$EXISTING_PANE" ]; then
   # 3a. 기존 pane 재사용
   PANE_ID="$EXISTING_PANE"
 else
-  # 3b. 새 pane 생성 → 즉시 이름 부여 → 타일 재배치 → claude 시작
-  PANE_ID=$(tmux split-window -h -d -P -F "#{pane_id}")
+  # 3b. team-lead 윈도우에 새 pane 생성 → 즉시 이름 부여 → 타일 재배치 → claude 시작
+  PANE_ID=$(tmux split-window -h -d -t "$TEAM_LEAD_WINDOW" -P -F "#{pane_id}")
   tmux select-pane -t "$PANE_ID" -T "$PANE_NAME"
-  tmux select-layout tiled
+  tmux select-layout -t "$TEAM_LEAD_WINDOW" tiled
   tmux send-keys -t "$PANE_ID" "cd '$WORK_DIR' && claude --model $PANE_MODEL" Enter
   sleep 5
 fi
