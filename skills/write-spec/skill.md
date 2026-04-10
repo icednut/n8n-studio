@@ -19,9 +19,9 @@ docs/yyyyMMdd-기능요약/
 - 기능 요약: 작업 내용을 2~4단어로 요약한 kebab-case 영문 (예: `slack-notification-fix`)
 - 전체 예시: `docs/20260410-slack-notification-fix/`
 
-### spec.md 작성
+### 01-spec.md 작성
 
-`docs/yyyyMMdd-기능요약/spec.md`를 아래 템플릿을 **그대로** 사용하여 작성한다. 섹션 이름, 순서, 형식을 임의로 변경하지 않는다.
+`docs/yyyyMMdd-기능요약/01-spec.md`를 아래 템플릿을 **그대로** 사용하여 작성한다. 섹션 이름, 순서, 형식을 임의로 변경하지 않는다.
 
 ```markdown
 # 명세: [작업 제목]

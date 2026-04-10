@@ -1,6 +1,6 @@
 ---
 name: workflow-finisher
-description: Use this agent when the n8n-studio:start orchestrator dispatches stage 8 (completion). Receives a scoped prompt with docs_path, workflow IDs, branch name, and RALF cycle count. Writes result.md, downloads workflow JSONs, commits, and creates a GitHub PR. Examples:
+description: Use this agent when the n8n-studio:start orchestrator dispatches stage 8 (completion). Receives a scoped prompt with docs_path, workflow IDs, branch name, and RALF cycle count. Writes 04-result.md, downloads workflow JSONs, commits, and creates a GitHub PR. Examples:
 
 <example>
 Context: All verification tests passed and orchestrator dispatches finisher.
@@ -32,9 +32,9 @@ Read only the files and IDs specified in the prompt. Write outputs to files and 
 
 Use `summarize-result` skill to perform all steps:
 
-1. **Write result.md** at `[docs_path]/result.md`:
-   - Read `[docs_path]/spec.md` for request summary
-   - Read `[docs_path]/test-plan.md` for test scenario count
+1. **Write 04-result.md** at `[docs_path]/04-result.md`:
+   - Read `[docs_path]/01-spec.md` for request summary
+   - Read `[docs_path]/03-test-plan.md` for test scenario count
    - Write concise work summary (see summarize-result skill for format)
 
 2. **Download workflow JSONs**:

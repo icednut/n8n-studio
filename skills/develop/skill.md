@@ -13,7 +13,7 @@ allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "mcp__
 
 ### 설계 문서 확인
 
-`docs/yyyyMMdd-기능요약/design.md`를 읽어 개발 계획을 파악한다.
+`docs/yyyyMMdd-기능요약/02-design.md`를 읽어 개발 계획을 파악한다.
 
 ### Code 노드 TDD 개발
 

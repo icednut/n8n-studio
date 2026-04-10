@@ -15,9 +15,9 @@ description: This skill should be used by n8n-studio agents when they need to wr
 - **금지 사항**: Execute Command 노드, Python 코드 노드
 - **권장 사항**: JavaScript Code 노드, n8n 내장 노드 활용
 
-### design.md 작성
+### 02-design.md 작성
 
-`docs/yyyyMMdd-기능요약/design.md` 내용:
+`docs/yyyyMMdd-기능요약/02-design.md` 내용:
 
 ```markdown
 # 설계: [작업 제목]
@@ -68,3 +68,13 @@ description: This skill should be used by n8n-studio agents when they need to wr
 - 워크플로우 패턴: `n8n-mcp-skills:n8n-workflow-patterns`
 - JavaScript 패턴: `n8n-mcp-skills:n8n-code-javascript`
 - 표현식 문법: `n8n-mcp-skills:n8n-expression-syntax`
+
+## 02-design.md 작성 금지 항목
+
+아래 내용은 설계 문서에 포함하지 않는다:
+- git 커밋 메시지 또는 커밋 계획
+- PR 제목/본문
+- 배포 절차 또는 릴리즈 노트
+- 구현 완료 후 할 일 목록
+
+이 정보는 `summarize-result` 스킬이 담당한다.

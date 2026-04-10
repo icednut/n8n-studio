@@ -9,9 +9,9 @@ description: This skill should be used by n8n-studio agents when they need to pl
 
 ## 수행 작업
 
-### test-plan.md 작성
+### 03-test-plan.md 작성
 
-`docs/yyyyMMdd-기능요약/test-plan.md` 내용:
+`docs/yyyyMMdd-기능요약/03-test-plan.md` 내용:
 
 ```markdown
 # 테스트 계획: [작업 제목]

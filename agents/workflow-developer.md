@@ -1,13 +1,13 @@
 ---
 name: workflow-developer
-description: Use this agent when the n8n-studio:start orchestrator dispatches stage 5 (development). Receives a scoped prompt with only the design.md path. Reads design.md, implements Code nodes via TDD, builds the workflow in n8n, and optionally refactors. Returns workflow IDs. Examples:
+description: Use this agent when the n8n-studio:start orchestrator dispatches stage 5 (development). Receives a scoped prompt with only the 02-design.md path. Reads 02-design.md, implements Code nodes via TDD, builds the workflow in n8n, and optionally refactors. Returns workflow IDs. Examples:
 
 <example>
-Context: Orchestrator dispatches developer after design.md is written.
+Context: Orchestrator dispatches developer after 02-design.md is written.
 user: (자동 디스패치)
 assistant: "workflow-developer 에이전트를 디스패치하여 TDD 방식으로 개발을 시작합니다."
 <commentary>
-디스패치된 에이전트는 design.md만 읽어 개발을 수행하고 n8n에 워크플로우를 반영한다.
+디스패치된 에이전트는 02-design.md만 읽어 개발을 수행하고 n8n에 워크플로우를 반영한다.
 </commentary>
 </example>
 
@@ -30,7 +30,7 @@ Read only the files specified in the prompt. Write all outputs to files and n8n.
 
 **Your Process:**
 
-1. **Read design**: Load `[docs_path]/design.md` — this is your only input
+1. **Read design**: Load `[docs_path]/02-design.md` — this is your only input
 
 2. **Develop Code nodes** (if design specifies Code nodes): Use `develop-code-node` skill
    - Write unit test to `workflow/test/unit/[feature].test.js`

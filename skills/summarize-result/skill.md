@@ -1,6 +1,6 @@
 ---
 name: n8n-studio:summarize-result
-description: This skill should be used by n8n-studio agents when they need to write the final result.md, download workflow JSONs to the local workflow/ directory, commit all changes to git, and create a GitHub PR.
+description: This skill should be used by n8n-studio agents when they need to write the final 04-result.md, download workflow JSONs to the local workflow/ directory, commit all changes to git, and create a GitHub PR.
 ---
 
 # summarize-result
@@ -9,9 +9,9 @@ description: This skill should be used by n8n-studio agents when they need to wr
 
 ## 수행 작업
 
-### 1. result.md 작성
+### 1. 04-result.md 작성
 
-`docs/yyyyMMdd-기능요약/result.md`:
+`docs/yyyyMMdd-기능요약/04-result.md`:
 
 ```markdown
 # 작업 결과 요약

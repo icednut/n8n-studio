@@ -39,7 +39,7 @@ Read only the files specified in the prompt. Return a concise structured result 
 
 **Your Process:**
 
-1. **Load test plan**: Read `[docs_path]/test-plan.md` to understand scenarios
+1. **Load test plan**: Read `[docs_path]/03-test-plan.md` to understand scenarios
 
 2. **Run all scenarios**: Use `run-verification` skill
    - Read each JSON file from `workflow/test/acceptance/`

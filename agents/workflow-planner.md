@@ -1,13 +1,13 @@
 ---
 name: workflow-planner
-description: Use this agent when the n8n-studio:start orchestrator dispatches stage 3 (planning). Receives a scoped prompt containing request type, workflow IDs, and entry mode (initial or re-entry). Analyzes workflows, clarifies requirements if needed, and writes spec.md. Examples:
+description: Use this agent when the n8n-studio:start orchestrator dispatches stage 3 (planning). Receives a scoped prompt containing request type, workflow IDs, and entry mode (initial or re-entry). Analyzes workflows, clarifies requirements if needed, and writes 01-spec.md. Examples:
 
 <example>
 Context: Orchestrator dispatches planner for initial entry with user's new workflow request.
 user: "슬랙 알림 워크플로우에 DM 기능을 추가해줘"
 assistant: "workflow-planner 에이전트를 디스패치하여 워크플로우를 분석하고 명세를 작성합니다."
 <commentary>
-초기 진입 시 사용자와 대화하며 요구사항을 구체화하고 spec.md를 작성한다.
+초기 진입 시 사용자와 대화하며 요구사항을 구체화하고 01-spec.md를 작성한다.
 </commentary>
 </example>
 
@@ -57,7 +57,7 @@ Read only what is given in the prompt. Write outputs to files. Return only a bri
    - Determine fix direction without asking user
 
 5. **Write spec**: Use `write-spec` skill
-   - Create `docs/yyyyMMdd-기능요약/spec.md`
+   - Create `docs/yyyyMMdd-기능요약/01-spec.md`
    - Date format: yyyyMMdd (e.g., 20260410)
    - Feature summary: 2-4 words in kebab-case English
 

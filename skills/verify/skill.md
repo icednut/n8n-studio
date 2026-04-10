@@ -27,7 +27,7 @@ Read (현황 파악) → Act (테스트 실행) → Learn (근본 원인 분석)
 
 ### 준비
 
-1. `docs/yyyyMMdd-기능요약/test-plan.md` 읽기
+1. `docs/yyyyMMdd-기능요약/03-test-plan.md` 읽기
 2. `workflow/test/acceptance/` 의 테스트 파일 목록 확인
 3. 현재 사이클 번호 초기화 (1)
 

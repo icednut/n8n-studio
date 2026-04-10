@@ -1,6 +1,6 @@
 ---
 name: n8n-studio:finish
-description: This skill should be used when the n8n-studio development cycle reaches the completion phase (8단계) after all verification tests pass, or when the user asks to "작업 마무리해줘", "PR 만들어줘", "결과 정리해줘". Generates result.md, downloads workflows, commits all changes, and creates a GitHub PR.
+description: This skill should be used when the n8n-studio development cycle reaches the completion phase (8단계) after all verification tests pass, or when the user asks to "작업 마무리해줘", "PR 만들어줘", "결과 정리해줘". Generates 04-result.md, downloads workflows, commits all changes, and creates a GitHub PR.
 argument-hint: "[docs 폴더 경로 (선택)]"
 allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "mcp__n8n-mcp__n8n_get_workflow", "mcp__plugin_github_github__create_pull_request", "mcp__plugin_github_github__create_branch", "mcp__plugin_github_github__push_files"]
 ---
@@ -13,9 +13,9 @@ allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "mcp__
 
 workflow-finisher 에이전트를 통해 `summarize-result` 스킬로 진행한다.
 
-### 1. result.md 작성
+### 1. 04-result.md 작성
 
-`docs/yyyyMMdd-기능요약/result.md`에 아래 내용을 작성한다:
+`docs/yyyyMMdd-기능요약/04-result.md`에 아래 내용을 작성한다:
 
 ```markdown
 # 작업 결과 요약
