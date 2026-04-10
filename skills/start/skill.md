@@ -58,14 +58,9 @@ echo "Team Lead pane: $TEAM_LEAD_PANE (window: $TEAM_LEAD_WINDOW)"
 
 ## Pane 관리 패턴
 
+> 디스패치 규칙은 `CLAUDE.md`에 명시되어 있다. 아래는 실행 절차다.
+
 모든 서브에이전트 디스패치에서 아래 패턴을 사용한다.
-
-### 원칙
-
-- **Pane 생성 즉시 이름 부여**: `tmux select-pane -t "$PANE_ID" -T "$PANE_NAME"`
-- **기존 pane 재사용**: 동일 이름의 pane이 살아있으면 새로 생성하지 않고 재사용
-- **완료 후 pane 유지**: 서브에이전트가 작업을 마쳐도 pane을 닫지 않음
-- **Push 알림**: 서브에이전트가 완료 시 `tmux send-keys`로 Team Lead pane에 직접 보고
 
 ### 디스패치 절차
 
