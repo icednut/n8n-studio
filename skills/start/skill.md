@@ -52,7 +52,6 @@ TASK_DIR="/tmp/n8n-studio"
 TASK_FILE="${TASK_DIR}/${STAGE_NAME}_task.md"
 OUTPUT_FILE="${TASK_DIR}/${STAGE_NAME}_output.md"
 STATUS_FILE="${TASK_DIR}/${STAGE_NAME}.done"
-WINDOW_NAME="n8n-${STAGE_NAME}"
 
 mkdir -p "$TASK_DIR"
 
@@ -73,21 +72,24 @@ TASKEOF
 # 3. 이전 상태 파일 제거
 rm -f "$STATUS_FILE" "$OUTPUT_FILE"
 
-# 4. 새 Tmux 창 생성 후 인터랙티브 Claude 시작
-tmux new-window -n "$WINDOW_NAME"
-tmux send-keys -t "$WINDOW_NAME" "cd '$WORK_DIR' && claude" Enter
+# 4. 현재 창을 수직으로 분할하여 새 Pane 생성 후 인터랙티브 Claude 시작
+#    -h: 좌우 분할 (에이전트 Pane이 오른쪽에 생성)
+#    -d: 포커스를 현재 Pane에 유지
+#    -P -F "#{pane_id}": 생성된 Pane ID 반환
+PANE_ID=$(tmux split-window -h -d -P -F "#{pane_id}")
+tmux send-keys -t "$PANE_ID" "cd '$WORK_DIR' && claude" Enter
 
 # 5. Claude가 초기화될 때까지 대기 (프롬프트 출력 시간)
 sleep 5
 
 # 6. 태스크 파일 경로를 첫 메시지로 전송
-tmux send-keys -t "$WINDOW_NAME" "다음 파일의 지침을 읽고 작업을 시작해주세요: $TASK_FILE" Enter
+tmux send-keys -t "$PANE_ID" "다음 파일의 지침을 읽고 작업을 시작해주세요: $TASK_FILE" Enter
 
-# 7. 사용자에게 Tmux 창 전환 안내 출력
+# 7. 사용자에게 안내 출력 (현재 Pane에서)
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  [$STAGE_NAME] Tmux 창 '$WINDOW_NAME' 에서 실행 중"
-echo "  진행상황 확인: Ctrl+b → 창 번호 또는 Ctrl+b n"
+echo "  [$STAGE_NAME] 오른쪽 Pane (ID: $PANE_ID)에서 실행 중"
+echo "  포커스 전환: Ctrl+b → 방향키 또는 Ctrl+b o"
 echo "  완료 자동 감지 중 (폴링 10초 간격, 최대 30분)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
@@ -104,7 +106,8 @@ if [ ! -f "$STATUS_FILE" ]; then
   exit 1
 fi
 
-# 9. 결과 파일 읽기
+# 9. 에이전트 Pane 닫기 및 결과 파일 읽기
+tmux kill-pane -t "$PANE_ID"
 cat "$OUTPUT_FILE"
 ```
 
