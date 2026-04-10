@@ -37,13 +37,10 @@ Read only the files specified in the prompt. Write all outputs to files and n8n.
    - Run `n8n_validate_workflow` and fix errors
    - Reference `n8n-mcp-skills:n8n-validation-expert` for error resolution
 
-4. **Refactor** (optional — use `refactor` skill logic):
-   Check if any of these apply:
-   - Duplicate logic across nodes
-   - Code node violating SRP
-   - Node names unclear
-   - Unnecessary nodes present
-   If yes: simplify. If no: skip.
+4. **Refactor** (optional): Use `refactor` skill
+   - Check refactoring criteria from the skill
+   - If any criterion applies: apply improvements via the skill
+   - If none applies: skip this step
 
 **Code Constraints:**
 - NO Execute Command nodes (shell execution) — exception only for truly special cases

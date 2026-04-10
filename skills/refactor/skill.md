@@ -2,12 +2,14 @@
 name: n8n-studio:refactor
 description: This skill should be used when the n8n-studio development cycle reaches the refactoring phase (6단계), or when the user asks to "n8n 워크플로우 리팩토링해줘", "워크플로우 단순화해줘". This phase is optional and can be skipped if not needed.
 argument-hint: "[docs 폴더 경로 (선택)]"
-allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "mcp__n8n-mcp__n8n_get_workflow", "mcp__n8n-mcp__n8n_update_full_workflow", "mcp__n8n-mcp__n8n_update_partial_workflow"]
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "mcp__n8n-mcp__n8n_get_workflow", "mcp__n8n-mcp__n8n_update_full_workflow", "mcp__n8n-mcp__n8n_update_partial_workflow"]
 ---
 
 # n8n-studio:refactor
 
 6단계 리팩토링을 담당한다. 개발 완료된 n8n 워크플로우를 간결하고 유지보수하기 쉽게 개선한다. **이 단계는 선택적이며, 불필요하다고 판단되면 건너뛴다.**
+
+workflow-developer 에이전트가 5단계 개발 완료 후 이 스킬을 직접 사용하여 진행한다.
 
 ## 리팩토링 판단 기준
 
@@ -19,11 +21,9 @@ allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "mcp__
 - 노드 이름이 역할을 명확히 나타내지 않음
 - 불필요한 노드가 포함되어 있음
 
-해당 항목이 없으면 이 단계를 건너뛰고 `verify` 스킬로 전환한다.
+해당 항목이 없으면 이 단계를 건너뛰고 완료 보고를 진행한다.
 
 ## 리팩토링 처리 흐름
-
-workflow-developer 에이전트를 통해 진행한다:
 
 1. n8n-mcp로 현재 워크플로우 구조 확인
 2. 리팩토링 대상 식별 (위 판단 기준 기반)
@@ -35,7 +35,3 @@ workflow-developer 에이전트를 통해 진행한다:
 4. n8n-mcp로 워크플로우 업데이트
 
 **리팩토링 후에도 기능은 동일하게 유지되어야 한다.**
-
-### 자동 전환
-
-리팩토링 완료 후 자동으로 `verify` 스킬로 전환한다.
