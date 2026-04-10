@@ -1,0 +1,15 @@
+{
+  "name": "local",
+  "owner": {
+    "name": "icednut"
+  },
+  "plugins": [
+    {
+      "name": "n8n-studio",
+      "source": "./",
+      "description": "n8n 워크플로우 개발을 위한 표준화된 개발 프로세스 플러그인. 발단→계획→설계→개발→검증→마무리의 8단계 사이클을 자동으로 진행.",
+      "version": "0.1.0"
+    }
+  ],
+  "version": "0.1.0"
+}
