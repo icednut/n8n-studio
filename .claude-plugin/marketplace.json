@@ -10,7 +10,7 @@
       "name": "n8n-studio",
       "source": "./",
       "description": "n8n 워크플로우 개발을 위한 표준화된 개발 프로세스 플러그인. 발단→계획→설계→개발→검증→마무리의 8단계 사이클을 자동으로 진행하며, TDD 기반 Code 노드 개발 및 RALF 루프 검증을 지원합니다.",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "author": {
         "name": "icednut",
         "url": "https://github.com/icednut"
