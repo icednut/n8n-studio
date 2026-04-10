@@ -317,12 +317,7 @@ workflow-verifier 에이전트로서 통합 테스트를 실행하세요.
 **결과 처리:**
 
 - `all_passed: true` → 8단계로 진행
-- `all_passed: false` AND `ralf_cycle < 3`:
-  1. 실패 목록을 사용자에게 표시
-  2. "재시도합니다 (사이클 [N]/3)" 알림
-  3. `ralf_cycle += 1`, `ralf_mode = true` 로 설정
-  4. 3단계로 돌아가 `n8n-planner` pane에 **재진입** 태스크 재전송
-  5. 4단계 → 5단계 → 6단계 → 7단계 반복
+
 - `all_passed: false` AND `ralf_cycle == 3`:
   `ralf_mode = false`로 초기화 후 사용자 지침 대기:
   ```
@@ -331,7 +326,42 @@ workflow-verifier 에이전트로서 통합 테스트를 실행하세요.
   [failure_summary 내용]
   사용자 지침이 필요합니다. 어떻게 진행할까요?
   ```
-  지침 수신 후 `ralf_cycle = 1`로 초기화하여 3단계부터 재시작
+  지침 수신 후 `ralf_cycle = 1`로 초기화하여 아래 RALF 재진입 절차부터 재시작
+
+- `all_passed: false` AND `ralf_cycle < 3`:
+
+  **RALF 재진입 절차 — 반드시 아래 순서대로 각 pane에 디스패치한다:**
+
+  ```bash
+  # 1. verifier_output.md에서 실패 정보 읽기
+  FAILURE_SUMMARY=$(grep "failure_summary:" /tmp/n8n-studio/verifier_output.md | cut -d' ' -f2-)
+  FAILED_SCENARIOS=$(grep "failed_scenarios:" /tmp/n8n-studio/verifier_output.md | cut -d' ' -f2-)
+
+  # 2. 사용자에게 표시
+  echo "사이클 ${ralf_cycle}/3 실패. 재시도합니다."
+  echo "실패 시나리오: $FAILED_SCENARIOS"
+
+  # 3. 상태 업데이트
+  ralf_cycle=$((ralf_cycle + 1))
+  ralf_mode=true
+  ```
+
+  이후 **3단계 → 4단계 → 5·6단계 → 7단계** 순서로 각 pane에 재진입 태스크를 디스패치한다. 각 단계는 Pane 관리 패턴(기존 pane 재사용)을 그대로 사용한다.
+
+  **3단계 재진입**: `/tmp/n8n-studio/planner_task.md`를 **재진입 모드**로 재작성하여 `n8n-planner` pane에 전송:
+  - 진입 유형: `재진입 (실패 시나리오: [FAILED_SCENARIOS], 원인: [FAILURE_SUMMARY])`
+  - planner 완료 보고 수신 후 4단계로 진행
+
+  **4단계 재진입**: `/tmp/n8n-studio/designer_task.md`를 재작성하여 `n8n-designer` pane에 전송
+  - designer 완료 보고 수신 후 5·6단계로 진행
+
+  **5·6단계 재진입**: `/tmp/n8n-studio/developer_task.md`를 재작성하여 `n8n-developer` pane에 전송
+  - developer 완료 보고 수신 후 7단계로 진행
+
+  **7단계 재진입**: `/tmp/n8n-studio/verifier_task.md`를 재작성하여 `n8n-verifier` pane에 전송
+  - 사이클 번호를 `[ralf_cycle]/3`으로 업데이트하여 전송
+
+  > **중요**: RALF 재진입 중 어떤 단계도 team-lead 세션이나 verifier 세션에서 직접 처리하지 않는다. 반드시 해당 단계의 전담 pane에 태스크 파일을 전달하여 처리한다.
 
 ---
 
