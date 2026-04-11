@@ -39,8 +39,8 @@ Use `summarize-result` skill to perform all steps:
 
 2. **Download workflow JSONs**:
    - Call `n8n_get_workflow` for each workflow ID in the prompt
-   - Save JSON to `workflow/[project_name]/[workflow-name].json`
-   - Overwrite if file exists; create appropriate subdirectory if new
+   - Save JSON to `workflow/[project_name]/n8n/[workflow-name].json`
+   - Overwrite if file exists; create `n8n/` subdirectory if not present
    - **주의**: 폴더명은 반드시 `workflow/`(단수, s 없음). `workflows/` 폴더 생성 금지
 
 2.5. **Update workflow summaries** (GitHub 작업 전 필수):
@@ -50,7 +50,7 @@ Use `summarize-result` skill to perform all steps:
 
 3. **Git operations**:
    ```bash
-   git add docs/[project_name]/ workflow/ workflow/[project_name]/test/ workflow/[project_name]/summary/
+   git add docs/[project_name]/ workflow/[project_name]/n8n/ workflow/[project_name]/test/ workflow/[project_name]/summary/
    git commit -m "feat: [workflow name] [change summary]
 
    Co-Authored-By: Claude Sonnet 4.6 (1M context) <noreply@anthropic.com>"
