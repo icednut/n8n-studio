@@ -1,6 +1,6 @@
 ---
 name: n8n-studio:write-spec
-description: This skill should be used by n8n-studio agents when they need to write a specification document (spec.md) based on the analyzed workflow state and user requirements. Creates the docs/yyyyMMdd-feature/ directory and saves the spec.
+description: This skill should be used by n8n-studio agents when they need to write a specification document (spec.md) based on the analyzed workflow state and user requirements. Creates the docs/[project_name]/yyyyMMdd-feature/ directory and saves the spec.
 ---
 
 # write-spec
@@ -12,16 +12,17 @@ description: This skill should be used by n8n-studio agents when they need to wr
 ### docs 폴더 생성
 
 ```
-docs/yyyyMMdd-기능요약/
+docs/[프로젝트명]/yyyyMMdd-기능요약/
 ```
 
+- 프로젝트명: 태스크 파일의 `[프로젝트 컨텍스트]`에서 전달받은 `project_name`
 - 날짜: 작업 시작일 기준 `yyyyMMdd` 형식 (예: `20260410`)
 - 기능 요약: 작업 내용을 2~4단어로 요약한 kebab-case 영문 (예: `slack-notification-fix`)
-- 전체 예시: `docs/20260410-slack-notification-fix/`
+- 전체 예시: `docs/my-project/20260410-slack-notification-fix/`
 
 ### 01-spec.md 작성
 
-`docs/yyyyMMdd-기능요약/01-spec.md`를 아래 템플릿을 **그대로** 사용하여 작성한다. 섹션 이름, 순서, 형식을 임의로 변경하지 않는다.
+`docs/[프로젝트명]/yyyyMMdd-기능요약/01-spec.md`를 아래 템플릿을 **그대로** 사용하여 작성한다. 섹션 이름, 순서, 형식을 임의로 변경하지 않는다.
 
 ```markdown
 # 명세: [작업 제목]

@@ -49,7 +49,7 @@ Use `summarize-result` skill to perform all steps:
 
 3. **Git operations**:
    ```bash
-   git add docs/ workflow/ workflow/test/ workflow/*/summary/
+   git add docs/[project_name]/ workflow/ workflow/test/ workflow/*/summary/
    git commit -m "feat: [workflow name] [change summary]
 
    Co-Authored-By: Claude Sonnet 4.6 (1M context) <noreply@anthropic.com>"

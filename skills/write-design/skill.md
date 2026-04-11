@@ -17,7 +17,7 @@ description: This skill should be used by n8n-studio agents when they need to wr
 
 ### 02-design.md 작성
 
-`docs/yyyyMMdd-기능요약/02-design.md` 내용:
+`docs/[프로젝트명]/yyyyMMdd-기능요약/02-design.md` 내용:
 
 ```markdown
 # 설계: [작업 제목]

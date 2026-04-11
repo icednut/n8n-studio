@@ -11,7 +11,7 @@ description: This skill should be used by n8n-studio agents when they need to wr
 
 ### 1. 04-result.md 작성
 
-`docs/yyyyMMdd-기능요약/04-result.md`:
+`docs/[프로젝트명]/yyyyMMdd-기능요약/04-result.md`:
 
 ```markdown
 # 작업 결과 요약
@@ -45,7 +45,7 @@ description: This skill should be used by n8n-studio agents when they need to wr
 ### 3. Git 작업
 
 ```bash
-git add docs/yyyyMMdd-기능요약/ workflow/ workflow/test/
+git add docs/[프로젝트명]/yyyyMMdd-기능요약/ workflow/ workflow/test/
 git commit -m "feat: [워크플로우명] [변경 내용 한 줄 요약]
 
 Co-Authored-By: Claude Sonnet 4.6 (1M context) <noreply@anthropic.com>"
