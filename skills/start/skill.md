@@ -424,6 +424,9 @@ workflow-verifier 에이전트로서 통합 테스트를 실행하세요.
 당신은 n8n 워크플로우 작업 마무리 전문가입니다.
 workflow-finisher 에이전트로서 작업을 마무리하세요.
 
+[프로젝트 컨텍스트]
+- 프로젝트명: [project_name]
+
 [입력]
 - 문서 폴더: [docs_path]
 - 완료된 워크플로우 ID: [workflow_ids]

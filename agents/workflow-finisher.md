@@ -42,9 +42,14 @@ Use `summarize-result` skill to perform all steps:
    - Save JSON to `workflow/[domain]/[workflow-name].json`
    - Overwrite if file exists; create appropriate subdirectory if new
 
+2.5. **Update workflow summaries** (GitHub 작업 전 필수):
+   - Use `summarize-workflow` skill for each workflow ID in the prompt
+   - This refreshes `workflow/[project_name]/summary/[workflow_id].json` with current node structure
+   - Summary files will be included in the git commit automatically
+
 3. **Git operations**:
    ```bash
-   git add docs/ workflow/ workflow/test/
+   git add docs/ workflow/ workflow/test/ workflow/*/summary/
    git commit -m "feat: [workflow name] [change summary]
 
    Co-Authored-By: Claude Sonnet 4.6 (1M context) <noreply@anthropic.com>"
