@@ -33,11 +33,12 @@ Read only the files specified in the prompt. Write all outputs to files and n8n.
 1. **Read design**: Load `[docs_path]/02-design.md` — this is your only input
 
 2. **Develop Code nodes** (if design specifies Code nodes): Use `develop-code-node` skill
-   - Write unit test to `workflow/test/unit/[feature].test.js`
-   - Run `npm test -- workflow/test/unit/[feature].test.js` → confirm RED
-   - Write implementation to `workflow/test/unit/[feature].js`
-   - Run `npm test -- workflow/test/unit/[feature].test.js` → confirm GREEN
-   - Port passing code to n8n Code node
+   - Check if `workflow/[프로젝트명]/js/[Code 노드명].js` already exists → if so, fetch current code from n8n and sync file first
+   - Write unit test to `workflow/[프로젝트명]/test/unit/[워크플로우 이름] - [Code 노드명].test.js`
+   - Run `npx jest "..."` → confirm RED
+   - Write implementation to `workflow/[프로젝트명]/js/[워크플로우 이름] - [Code 노드명].js`
+   - Run `npx jest "..."` → confirm GREEN; repeat until all tests pass
+   - Use `n8n_update_partial_workflow` to update only the specific Code node in n8n
 
 3. **Build workflow**: Use `build-workflow` skill
    - Create or update n8n workflows per design
