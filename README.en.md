@@ -40,7 +40,7 @@ Initiate → Plan → Design → Develop → (Refactor) → Verify → Finish
 Run the following command in Claude Code:
 
 ```
-/plugin add-marketplace icednut/n8n-studio
+/plugin marketplace add icednut/n8n-studio
 ```
 
 ### Step 2: Install plugin
@@ -155,7 +155,7 @@ your-n8n-project/
 - **[n8n-mcp-skills](https://github.com/czlonkowski/n8n-skills)**: A collection of expert skills for n8n node configuration, expression syntax, workflow patterns, and more — referenced internally by n8n-studio. Installing alongside n8n-studio is strongly recommended.
 
 ```
-/plugin add-marketplace czlonkowski/n8n-skills
+/plugin marketplace add czlonkowski/n8n-skills
 /plugin install n8n-mcp-skills@n8n-mcp-skills
 ```
 
