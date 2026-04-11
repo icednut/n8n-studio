@@ -134,6 +134,7 @@ your-n8n-project/
 | `n8n-studio:run-verification` | Execute integration tests |
 | `n8n-studio:finish` | Run completion phase |
 | `n8n-studio:summarize-result` | Summarize results and create PR |
+| `n8n-studio:summarize-workflow` | Analyze workflow node structure and generate JSON summary file |
 
 ---
 

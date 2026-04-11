@@ -134,6 +134,7 @@ your-n8n-project/
 | `n8n-studio:run-verification` | 통합 테스트 실행 |
 | `n8n-studio:finish` | 마무리 단계 진행 |
 | `n8n-studio:summarize-result` | 결과 정리 및 PR 생성 |
+| `n8n-studio:summarize-workflow` | 워크플로우 노드 구조 분석 및 JSON 요약 파일 생성 |
 
 ---
 
