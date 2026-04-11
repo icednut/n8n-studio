@@ -82,3 +82,29 @@ PANE_ID=$(tmux split-window -h -d -t "$TEAM_LEAD_WINDOW" -P -F "#{pane_id}")
 tmux select-pane -t "$PANE_ID" -T "$PANE_NAME"
 tmux select-layout -t "$TEAM_LEAD_WINDOW" tiled
 ```
+
+---
+
+## 규칙 7: Claude Code 실행 확인 후 프롬프트를 전송한다
+
+신규 pane에서 `claude` 명령을 실행한 뒤, Claude Code의 프롬프트(`:` 또는 `>`)가 출력되어 입력 대기 상태임이 확인되기 전까지 태스크 파일 경로를 전송하지 않는다.
+
+**확인 방법:**
+
+```bash
+# claude 실행
+tmux send-keys -t "$PANE_ID" "cd '$WORK_DIR' && claude --model $PANE_MODEL --name '$PANE_NAME'" Enter
+
+# Claude Code 프롬프트가 나타날 때까지 대기 (최대 30초, 1초 간격 폴링)
+for i in $(seq 1 30); do
+  PANE_CONTENT=$(tmux capture-pane -t "$PANE_ID" -p 2>/dev/null)
+  if echo "$PANE_CONTENT" | grep -qE '(^|\s)(>|✓|✗|\?)(\s|$)'; then
+    break
+  fi
+  sleep 1
+done
+```
+
+**규칙:**
+- 루프가 30초를 초과하여 종료되면 해당 pane에 태스크를 전송하지 않고 Team Lead는 사용자에게 오류를 보고한다.
+- 기존 pane을 재사용하는 경우(규칙 5)에도 동일하게 프롬프트 대기 상태를 확인한 후 전송한다.
