@@ -1,6 +1,6 @@
 ---
 name: n8n-studio:plan-tests
-description: This skill should be used by n8n-studio agents when they need to plan and write integration test scenarios based on the design document. Creates test plan docs and actual test files in workflow/test/unit/ and workflow/test/acceptance/.
+description: This skill should be used by n8n-studio agents when they need to plan and write integration test scenarios based on the design document. Creates test plan docs and actual test files in workflow/[프로젝트명]/test/unit/ and workflow/[프로젝트명]/test/acceptance/.
 ---
 
 # plan-tests
@@ -19,21 +19,21 @@ description: This skill should be used by n8n-studio agents when they need to pl
 ## 단위 테스트 (Code 노드)
 | 시나리오 ID | 대상 | 설명 | 파일 |
 |-----------|------|------|------|
-| UT-001    | [Code 노드명] | [테스트 목적] | workflow/test/unit/xxx.test.js |
+| UT-001    | [Code 노드명] | [테스트 목적] | workflow/[프로젝트명]/test/unit/xxx.test.js |
 
 ## 통합/인수 테스트
 | 시나리오 ID | 워크플로우 | 설명 | 파일 |
 |-----------|---------|------|------|
-| IT-001    | [워크플로우명] | [테스트 목적] | workflow/test/acceptance/xxx.json |
-| AT-001    | [메인+서브] | [통합 테스트] | workflow/test/acceptance/xxx.json |
+| IT-001    | [워크플로우명] | [테스트 목적] | workflow/[프로젝트명]/test/acceptance/xxx.json |
+| AT-001    | [메인+서브] | [통합 테스트] | workflow/[프로젝트명]/test/acceptance/xxx.json |
 ```
 
 ### 단위 테스트 파일 작성
 
-`workflow/test/unit/` 에 `.test.js` 파일 작성:
+`workflow/[프로젝트명]/test/unit/` 에 `.test.js` 파일 작성:
 
 ```javascript
-// workflow/test/unit/[기능명].test.js
+// workflow/[프로젝트명]/test/unit/[기능명].test.js
 const { [함수명] } = require('./[기능명]');
 
 describe('[Code 노드 이름]', () => {
@@ -47,7 +47,7 @@ describe('[Code 노드 이름]', () => {
 
 ### 인수 테스트 파일 작성
 
-`workflow/test/acceptance/` 에 JSON 파일 작성:
+`workflow/[프로젝트명]/test/acceptance/` 에 JSON 파일 작성:
 
 ```json
 {

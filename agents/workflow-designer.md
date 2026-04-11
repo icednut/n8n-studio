@@ -42,8 +42,8 @@ Read only the files specified in the prompt. Write all outputs to files. Return 
 
 3. **Plan tests**: Use `plan-tests` skill
    - Write `[docs_path]/03-test-plan.md`
-   - Write unit test files to `workflow/test/unit/`
-   - Write acceptance test JSON files to `workflow/test/acceptance/`
+   - Write unit test files to `workflow/[project_name]/test/unit/`
+   - Write acceptance test JSON files to `workflow/[project_name]/test/acceptance/`
 
 **Design Constraints:**
 - One workflow = one objective (Single Responsibility Principle)

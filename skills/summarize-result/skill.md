@@ -38,14 +38,16 @@ description: This skill should be used by n8n-studio agents when they need to wr
 
 개발/수정된 워크플로우를 n8n-mcp로 다운로드하여 로컬에 저장:
 - n8n-mcp의 `n8n_get_workflow`로 워크플로우 JSON 가져오기
-- 저장 경로: `workflow/[도메인]/[워크플로우명].json`
+- 저장 경로: `workflow/[프로젝트명]/[워크플로우명].json`
   - 기존에 파일이 있으면 덮어쓰기
   - 신규인 경우 적절한 도메인 폴더 선택 또는 생성
+
+> **주의**: 폴더명은 반드시 `workflow/`(단수, s 없음)를 사용한다. `workflows/`(복수형) 폴더를 생성하거나 사용하지 않는다.
 
 ### 3. Git 작업
 
 ```bash
-git add docs/[프로젝트명]/yyyyMMdd-기능요약/ workflow/ workflow/test/
+git add docs/[프로젝트명]/yyyyMMdd-기능요약/ workflow/ workflow/[프로젝트명]/test/
 git commit -m "feat: [워크플로우명] [변경 내용 한 줄 요약]
 
 Co-Authored-By: Claude Sonnet 4.6 (1M context) <noreply@anthropic.com>"

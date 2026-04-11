@@ -21,9 +21,9 @@ Code 노드가 필요한 경우 workflow-developer 에이전트를 통해 `devel
 
 **TDD 순서 (방식 B — 로컬 먼저):**
 
-1. `workflow/test/unit/` 에 유닛 테스트 파일 작성 (`.test.js`)
+1. `workflow/[프로젝트명]/test/unit/` 에 유닛 테스트 파일 작성 (`.test.js`)
 2. `npm test`로 테스트 실행 → 실패 확인 (Red)
-3. `workflow/test/unit/` 에 구현 로직 파일 작성 (`.js`)
+3. `workflow/[프로젝트명]/test/unit/` 에 구현 로직 파일 작성 (`.js`)
 4. `npm test`로 테스트 실행 → 통과 확인 (Green)
 5. 통과된 코드를 n8n Code 노드에 이식
 

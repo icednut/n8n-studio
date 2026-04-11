@@ -266,8 +266,8 @@ workflow-designer 에이전트로서 아래 파일을 읽고 설계를 수행하
 1. 01-spec.md를 읽으세요
 2. write-design 스킬로 [docs_path]/02-design.md를 작성하세요
 3. plan-tests 스킬로 테스트 파일을 작성하세요:
-   - workflow/test/unit/ (단위 테스트)
-   - workflow/test/acceptance/ (인수 테스트 JSON)
+   - workflow/[project_name]/test/unit/ (단위 테스트)
+   - workflow/[project_name]/test/acceptance/ (인수 테스트 JSON)
    - [docs_path]/03-test-plan.md (테스트 계획)
 
 ---
@@ -344,7 +344,7 @@ workflow-verifier 에이전트로서 통합 테스트를 실행하세요.
 
 [입력]
 - 테스트 계획: [docs_path]/03-test-plan.md
-- 테스트 파일 경로: workflow/test/acceptance/
+- 테스트 파일 경로: workflow/[project_name]/test/acceptance/
 - 대상 워크플로우 ID: [workflow_ids]
 - 현재 사이클: [ralf_cycle]/3
 

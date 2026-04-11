@@ -42,7 +42,7 @@ Read only the files specified in the prompt. Return a concise structured result 
 1. **Load test plan**: Read `[docs_path]/03-test-plan.md` to understand scenarios
 
 2. **Run all scenarios**: Use `run-verification` skill
-   - Read each JSON file from `workflow/test/acceptance/`
+   - Read each JSON file from `workflow/[project_name]/test/acceptance/`
    - Execute via `n8n_test_workflow` with the input data from each file
    - Run ALL scenarios from the beginning every time (never skip)
 

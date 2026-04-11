@@ -11,7 +11,7 @@ description: This skill should be used by n8n-studio agents when they need to ex
 
 ### 테스트 파일 로드
 
-`workflow/test/acceptance/` 의 모든 JSON 파일을 읽어 실행할 시나리오 목록 수집.
+`workflow/[프로젝트명]/test/acceptance/` 의 모든 JSON 파일을 읽어 실행할 시나리오 목록 수집.
 
 ### 시나리오별 실행
 

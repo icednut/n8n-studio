@@ -28,7 +28,7 @@ Read (현황 파악) → Act (테스트 실행) → Learn (근본 원인 분석)
 ### 준비
 
 1. `docs/yyyyMMdd-기능요약/03-test-plan.md` 읽기
-2. `workflow/test/acceptance/` 의 테스트 파일 목록 확인
+2. `workflow/[프로젝트명]/test/acceptance/` 의 테스트 파일 목록 확인
 3. 현재 사이클 번호 초기화 (1)
 
 ### 테스트 실행 (run-verification 스킬)
@@ -37,7 +37,7 @@ workflow-verifier 에이전트를 통해 `run-verification` 스킬로 전체 테
 
 **실행 방법:**
 - n8n-mcp의 Test Execution 기능으로 각 시나리오 실행
-- 시나리오별 입력 파라미터 JSON을 `workflow/test/acceptance/` 파일에서 읽음
+- 시나리오별 입력 파라미터 JSON을 `workflow/[프로젝트명]/test/acceptance/` 파일에서 읽음
 - 실행 결과 수집:
   - 출력값과 기대값 비교
   - 파일 산출물이 있는 경우 파일 내용 비교
