@@ -9,6 +9,16 @@ description: This skill should be used by n8n-studio agents when they need to cr
 
 ## 수행 작업
 
+### triggerDataFormat 확인 (빌드 전 선행)
+
+워크플로우 생성/수정 전에 해당 워크플로우의 summary 파일에서 `triggerDataFormat`을 확인한다:
+
+1. `workflow/*/summary/[workflow_id].json` 파일을 `Glob`으로 탐색
+2. `triggerDataFormat` 필드가 있으면 첫 번째 노드(Webhook, Manual Trigger 등) 설정 시 참고 자료로 활용한다:
+   - Webhook 노드: `triggerDataFormat.body`의 필드 구조를 기반으로 이후 노드의 `$json.body.*` 표현식을 작성한다
+   - 트리거 노드 Output의 실제 데이터 형태를 파악하여 다음 노드에서의 데이터 접근 방식을 결정한다
+3. `triggerDataFormat`이 없으면 설계 문서의 입력 명세만으로 진행한다
+
 ### 노드 타입 탐색
 
 설계 문서의 노드 목록을 확인하고 필요한 노드 타입을 탐색한다:

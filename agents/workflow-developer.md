@@ -32,6 +32,12 @@ Read only the files specified in the prompt. Write all outputs to files and n8n.
 
 1. **Read design**: Load `[docs_path]/02-design.md` — this is your only input
 
+1.5. **Read triggerDataFormat** (개발/수정 시 필수):
+   - `Glob`으로 `workflow/*/summary/*.json` 검색
+   - 설계 문서에 언급된 워크플로우 ID와 매칭되는 summary 파일을 읽어 `triggerDataFormat` 필드 확인
+   - `triggerDataFormat`이 있으면 해당 데이터를 첫 번째 노드(Webhook 등 트리거 노드) 입력 구조의 참고 자료로 활용한다
+   - `triggerDataFormat`이 없으면 이 단계를 조용히 건너뛴다 (오류 없음)
+
 2. **Develop Code nodes** (if design specifies Code nodes): Use `develop-code-node` skill
    - Check if `workflow/[프로젝트명]/js/[Code 노드명].js` already exists → if so, fetch current code from n8n and sync file first
    - Write unit test to `workflow/[프로젝트명]/test/unit/[워크플로우 이름] - [Code 노드명].test.js`
