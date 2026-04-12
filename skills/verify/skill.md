@@ -2,7 +2,7 @@
 name: n8n-studio:verify
 description: This skill should be used when the n8n-studio development cycle reaches the verification phase (7단계), or when the user asks to "n8n 워크플로우 검증해줘", "통합 테스트 실행해줘". Runs integration test scenarios in a RALF loop (up to 3 cycles) and reports failures to the user if all cycles fail.
 argument-hint: "[docs 폴더 경로 (선택)]"
-allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "mcp__n8n-mcp__n8n_test_workflow", "mcp__n8n-mcp__n8n_executions", "mcp__n8n-mcp__n8n_get_workflow"]
+allowed-tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "mcp__n8n-mcp__n8n_test_workflow", "mcp__n8n-mcp__n8n_executions", "mcp__n8n-mcp__n8n_get_workflow", "mcp__n8n-mcp__n8n_list_workflows"]
 ---
 
 # n8n-studio:verify
@@ -28,7 +28,7 @@ Read (현황 파악) → Act (테스트 실행) → Learn (근본 원인 분석)
 ### 준비
 
 1. `docs/yyyyMMdd-기능요약/03-test-plan.md` 읽기
-2. `workflow/[프로젝트명]/test/acceptance/` 의 테스트 파일 목록 확인
+2. `workflow/[프로젝트명]/test/integration/` 의 테스트 파일 목록 확인
 3. 현재 사이클 번호 초기화 (1)
 
 ### 테스트 실행 (run-verification 스킬)
@@ -37,15 +37,15 @@ workflow-verifier 에이전트를 통해 `run-verification` 스킬로 전체 테
 
 **실행 방법:**
 - n8n-mcp의 Test Execution 기능으로 각 시나리오 실행
-- 시나리오별 입력 파라미터 JSON을 `workflow/[프로젝트명]/test/acceptance/` 파일에서 읽음
+- 시나리오별 입력 파라미터 JSON을 `workflow/[프로젝트명]/test/integration/` 파일에서 읽음
+- 각 워크플로우는 개별적으로 Test Execution을 실행하며, 서브 워크플로우가 있는 경우 해당 호출 검증만 수행
 - 실행 결과 수집:
   - 출력값과 기대값 비교
-  - 파일 산출물이 있는 경우 파일 내용 비교
   - 실행 로그로 오류 여부 판단
 
 **실패 판단 기준:**
 - 기대 출력값과 실제 출력값이 불일치
-- 기대 파일 내용과 실제 파일 내용이 불일치
+- 서브 워크플로우 호출이 기대와 다름 (호출되지 않음 또는 입력 데이터 불일치)
 - 워크플로우 실행 중 오류 발생
 
 ### 결과 판단
